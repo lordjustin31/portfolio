@@ -1,6 +1,7 @@
 'use client';
 
 import { RefreshCw, User, Settings, Info } from 'lucide-react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface ContextMenuProps {
   x: number;
@@ -10,6 +11,13 @@ interface ContextMenuProps {
 }
 
 export default function ContextMenu({ x, y, onClose, onOpenWindow }: ContextMenuProps) {
+  const isMobile = useIsMobile();
+  
+  // Hide context menu on mobile (right-click doesn't make sense on touch devices)
+  if (isMobile) {
+    return null;
+  }
+  
   return (
     <div
       className="fixed bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg shadow-lg py-1 w-48 z-50"

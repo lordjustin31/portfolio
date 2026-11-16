@@ -119,6 +119,25 @@ kbd {
   font-size: 0.875em;
 }
 
+/* Scrollbar thin utility */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #525252;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+
 /* ===================================
    MOBILE RESPONSIVE OPTIMIZATIONS
    =================================== */
