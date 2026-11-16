@@ -1,0 +1,76 @@
+'use client';
+
+import { User, FolderOpen, FileText, Mail } from 'lucide-react';
+
+interface DesktopIconsProps {
+  onOpenWindow: (windowId: string) => void;
+  openWindows: string[];
+}
+
+const icons = [
+  { id: 'about', label: 'About Me', icon: User, position: 'top-4 left-4', tooltip: 'Learn about my background and experience' },
+  { id: 'projects', label: 'Projects', icon: FolderOpen, position: 'top-28 left-4', tooltip: 'View my portfolio of work' },
+  { id: 'resume', label: 'Resume', icon: FileText, position: 'top-52 left-4', tooltip: 'Download my professional resume' },
+  { id: 'contact', label: 'Contact', icon: Mail, position: 'top-76 left-4', tooltip: 'Get in touch with me' },
+];
+
+export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIconsProps) {
+  return (
+    <>
+      {/* Name Display */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
+        <h1 className="text-4xl font-bold text-neutral-800 tracking-tight mb-2">
+          Lord Justin Bernal
+        </h1>
+        <p className="text-neutral-600 text-sm">Personal Workspace</p>
+      </div>
+
+      {/* Desktop Icons */}
+      {icons.map((item) => {
+        const isOpen = openWindows.includes(item.id);
+        
+        return (
+          <div key={item.id} className="relative group">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenWindow(item.id);
+              }}
+              onDoubleClick={(e) => {
+                e.stopPropagation();
+                onOpenWindow(item.id);
+              }}
+              className={`absolute ${item.position} flex flex-col items-center gap-1.5 p-3 rounded transition-all ${
+                isOpen 
+                  ? 'bg-blue-100 border-2 border-blue-400' 
+                  : 'hover:bg-white/50 border-2 border-transparent'
+              }`}
+            >
+              <div className={`w-12 h-12 rounded flex items-center justify-center shadow-sm transition-all ${
+                isOpen 
+                  ? 'bg-blue-500 border border-blue-600 shadow-md' 
+                  : 'bg-white border border-neutral-300 group-hover:shadow'
+              }`}>
+                <item.icon size={24} className={isOpen ? 'text-white' : 'text-neutral-700'} />
+              </div>
+              <span className={`text-xs font-medium text-center px-2 py-0.5 rounded ${
+                isOpen 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-white/80 text-neutral-800'
+              }`}>
+                {item.label}
+              </span>
+            </button>
+            
+            {/* Tooltip */}
+            <div className={`absolute ${item.position} left-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50`}>
+              <div className="bg-neutral-900 text-white text-xs px-3 py-2 rounded shadow-lg whitespace-nowrap">
+                {item.tooltip}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
