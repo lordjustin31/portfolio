@@ -93,8 +93,8 @@ export default function Desktop() {
         minimizedWindows={minimizedWindows}
       />
 
-      {/* Desktop Widgets */}
-      <DesktopWidgets onOpenWindow={openWindow} />
+      {/* Desktop Widgets - Desktop only */}
+      {!isMobile && <DesktopWidgets onOpenWindow={openWindow} />}
 
       {/* Window Manager */}
       <WindowManager
