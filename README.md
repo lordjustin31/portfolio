@@ -1,6 +1,15 @@
-# Lord Justin Bernal - Portfolio OS
+# 🖥️ Lord Justin Bernal - Portfolio OS
 
-A modern, professional personal portfolio designed as an operating system interface. This portfolio demonstrates frontend development skills through a fully functional, interactive desktop environment.
+> A modern, interactive portfolio designed as an operating system interface
+
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)](https://tailwindcss.com/)
+
+A professional personal portfolio that demonstrates frontend development skills through a fully functional, interactive desktop environment. Features a unique OS-themed interface with draggable windows, a functional taskbar, and smooth animations.
+
+**🚀 [View Live Demo](#)** *(add your Vercel URL here)*
 
 ## 🎯 Features
 
@@ -145,10 +154,10 @@ MIT License - feel free to use this as a template for your own portfolio.
 
 **Lord Justin Bernal**
 - Frontend Developer
-- Portfolio: [Your URL]
-- GitHub: [@yourusername]
-- LinkedIn: [Your LinkedIn]
+- Portfolio: [os-theme-portfolio.vercel.app](https://os-theme-portfolio.vercel.app) *(update with your actual URL)*
+- GitHub: [@LordJustinBernal](https://github.com/LordJustinBernal) *(update with your GitHub username)*
+- Email: justin31tarca@gmail.com
 
 ---
 
-Built with Next.js, React, TypeScript, and Tailwind CSS.
+Built with ❤️ using Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
