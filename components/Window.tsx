@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Minus, Square, X } from 'lucide-react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface WindowProps {
   id: string;
@@ -24,13 +25,14 @@ export default function Window({
   onMinimize,
   zIndex,
 }: WindowProps) {
+  const isMobile = useIsMobile();
   const [isMaximized, setIsMaximized] = useState(false);
   const [position, setPosition] = useState({ x: 100 + Math.random() * 100, y: 80 + Math.random() * 60 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef<{ startX: number; startY: number; startPosX: number; startPosY: number } | null>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (isMaximized) return;
+    if (isMaximized || isMobile) return; // Disable dragging on mobile
     onFocus();
     setIsDragging(true);
     dragRef.current = {
@@ -66,13 +68,17 @@ export default function Window({
     };
   }, [isDragging]);
 
-  const windowStyle = isMaximized
+  // Mobile: Full screen always
+  // Desktop: Maximized or positioned
+  const windowStyle = isMobile
+    ? { left: 0, top: 0, right: 0, bottom: '48px', width: '100%', height: 'calc(100% - 48px)' }
+    : isMaximized
     ? { left: 0, top: 0, right: 0, bottom: '48px', width: '100%', height: 'calc(100% - 48px)' }
     : { left: `${position.x}px`, top: `${position.y}px`, width: '800px', height: '600px' };
 
   return (
     <div
-      className={`fixed bg-white dark:bg-neutral-800 border rounded-lg shadow-xl overflow-hidden transition-all ${
+      className={`fixed bg-white dark:bg-neutral-800 border ${isMobile ? 'rounded-none' : 'rounded-lg'} shadow-xl overflow-hidden transition-all ${
         isActive ? 'border-neutral-400 dark:border-neutral-600' : 'border-neutral-300 dark:border-neutral-700'
       }`}
       style={{ ...windowStyle, zIndex }}
@@ -83,51 +89,53 @@ export default function Window({
     >
       {/* Title Bar */}
       <div
-        className={`h-10 px-3 flex items-center justify-between border-b cursor-move select-none ${
+        className={`h-12 md:h-10 px-3 flex items-center justify-between border-b ${isMobile ? 'cursor-default' : 'cursor-move'} select-none ${
           isActive 
             ? 'bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600' 
             : 'bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'
         }`}
         onMouseDown={handleMouseDown}
       >
-        <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">{title}</span>
+        <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100 truncate">{title}</span>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
           <button
-            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
+            className={`${isMobile ? 'w-10 h-10' : 'w-8 h-6'} flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors touch-manipulation`}
             onClick={(e) => {
               e.stopPropagation();
               onMinimize();
             }}
             title="Minimize"
           >
-            <Minus size={14} className="text-neutral-600 dark:text-neutral-300" />
+            <Minus size={isMobile ? 18 : 14} className="text-neutral-600 dark:text-neutral-300" />
           </button>
           
-          <button
-            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsMaximized(!isMaximized);
-            }}
-          >
-            <Square size={14} className="text-neutral-600 dark:text-neutral-300" />
-          </button>
+          {!isMobile && (
+            <button
+              className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsMaximized(!isMaximized);
+              }}
+            >
+              <Square size={14} className="text-neutral-600 dark:text-neutral-300" />
+            </button>
+          )}
           
           <button
-            className="w-8 h-6 flex items-center justify-center hover:bg-red-500 hover:text-white rounded transition-colors"
+            className={`${isMobile ? 'w-10 h-10' : 'w-8 h-6'} flex items-center justify-center hover:bg-red-500 hover:text-white rounded transition-colors touch-manipulation`}
             onClick={(e) => {
               e.stopPropagation();
               onClose();
             }}
           >
-            <X size={14} className="text-neutral-600 dark:text-neutral-300" />
+            <X size={isMobile ? 18 : 14} className="text-neutral-600 dark:text-neutral-300 hover:text-white" />
           </button>
         </div>
       </div>
 
       {/* Content */}
-      <div className="h-[calc(100%-40px)] overflow-auto bg-white dark:bg-neutral-800">
+      <div className={`${isMobile ? 'h-[calc(100%-48px)]' : 'h-[calc(100%-40px)]'} overflow-auto bg-white dark:bg-neutral-800`}>
         {children}
       </div>
     </div>

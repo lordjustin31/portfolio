@@ -76,7 +76,7 @@ export default function Desktop() {
       }}
     >
       {/* Subtle watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="desktop-watermark absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="text-[12rem] font-bold text-neutral-200/30 dark:text-neutral-700/30 select-none tracking-tighter">
           LJ
         </div>

@@ -118,3 +118,44 @@ kbd {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.875em;
 }
+
+/* ===================================
+   MOBILE RESPONSIVE OPTIMIZATIONS
+   =================================== */
+
+/* Mobile-friendly touch targets (44x44px minimum) */
+@media (max-width: 768px) {
+  /* Increase button sizes for touch */
+  button {
+    min-height: 44px;
+  }
+
+  /* Hide desktop watermark on mobile */
+  .desktop-watermark {
+    display: none !important;
+  }
+
+  /* Optimize scrollbar for mobile */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Reduce animations on mobile for better performance */
+  * {
+    transition-duration: 80ms;
+  }
+}
+
+/* Small mobile devices (320px - 430px) */
+@media (max-width: 430px) {
+  /* Further reduce font sizes if needed */
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Tablet devices (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablet-specific adjustments */
+}
