@@ -18,18 +18,35 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Load theme from localStorage on mount
-    const savedTheme = localStorage.getItem('theme') as Theme;
+    // Load theme from localStorage on mount, default to 'light' if not set
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    
     if (savedTheme === 'dark' || savedTheme === 'light') {
+      // Apply saved theme
       setThemeState(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      // No saved theme - ensure Light Mode is applied
+      setThemeState('light');
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    
+    // Apply theme class to HTML element
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const toggleTheme = () => {
