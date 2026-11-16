@@ -57,3 +57,14 @@ next-env.d.ts
 # OS
 Thumbs.db
 .DS_Store
+
+# Internal documentation (keep locally only)
+DEPLOYMENT_CHECKLIST.md
+DEPLOY_NOW.md
+PRE_DEPLOYMENT_SUMMARY.md
+README_DEPLOYMENT.md
+SECURITY_AUDIT.md
+CHANGES_SUMMARY.md
+EMAIL_SETUP_GUIDE.md
+AGENTS.md
+CLAUDE.md
