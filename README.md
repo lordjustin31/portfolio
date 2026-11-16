@@ -9,7 +9,7 @@
 
 A professional personal portfolio that demonstrates frontend development skills through a fully functional, interactive desktop environment. Features a unique OS-themed interface with draggable windows, a functional taskbar, and smooth animations.
 
-**🚀 [View Live Demo](#)** *(add your Vercel URL here)*
+**🚀 [View Live Demo](https://lj-portfolio-os.vercel.app)**
 
 ## 🎯 Features
 
@@ -154,8 +154,8 @@ MIT License - feel free to use this as a template for your own portfolio.
 
 **Lord Justin Bernal**
 - Frontend Developer
-- Portfolio: [os-theme-portfolio.vercel.app](https://os-theme-portfolio.vercel.app) *(update with your actual URL)*
-- GitHub: [@LordJustinBernal](https://github.com/LordJustinBernal) *(update with your GitHub username)*
+- Portfolio: [lj-portfolio-os.vercel.app](https://lj-portfolio-os.vercel.app)
+- GitHub: [@lordjustin31](https://github.com/lordjustin31)
 - Email: justin31tarca@gmail.com
 
 ---
