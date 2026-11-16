@@ -83,7 +83,11 @@ export default function Desktop() {
       </div>
 
       {/* Desktop Icons */}
-      <DesktopIcons onOpenWindow={openWindow} openWindows={openWindows} />
+      <DesktopIcons 
+        onOpenWindow={openWindow} 
+        openWindows={openWindows}
+        minimizedWindows={minimizedWindows}
+      />
 
       {/* Desktop Widgets */}
       <DesktopWidgets onOpenWindow={openWindow} />

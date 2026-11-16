@@ -5,6 +5,7 @@ import { User, FolderOpen, FileText, Mail } from 'lucide-react';
 interface DesktopIconsProps {
   onOpenWindow: (windowId: string) => void;
   openWindows: string[];
+  minimizedWindows: string[];
 }
 
 const icons = [
@@ -14,7 +15,7 @@ const icons = [
   { id: 'contact', label: 'Contact', icon: Mail, position: 'top-76 left-4', tooltip: 'Get in touch with me' },
 ];
 
-export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIconsProps) {
+export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindows }: DesktopIconsProps) {
   return (
     <>
       {/* Name Display */}
@@ -28,6 +29,9 @@ export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIcons
       {/* Desktop Icons */}
       {icons.map((item) => {
         const isOpen = openWindows.includes(item.id);
+        const isMinimized = minimizedWindows.includes(item.id);
+        // Only show selected state if window is open AND NOT minimized
+        const isSelected = isOpen && !isMinimized;
         
         return (
           <div key={item.id} className="relative group">
@@ -41,20 +45,20 @@ export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIcons
                 onOpenWindow(item.id);
               }}
               className={`absolute ${item.position} flex flex-col items-center gap-1.5 p-3 rounded transition-all ${
-                isOpen 
+                isSelected 
                   ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-400 dark:border-blue-600' 
                   : 'hover:bg-white/50 dark:hover:bg-neutral-800/50 border-2 border-transparent'
               }`}
             >
               <div className={`w-12 h-12 rounded flex items-center justify-center shadow-sm transition-all ${
-                isOpen 
+                isSelected 
                   ? 'bg-blue-500 dark:bg-blue-600 border border-blue-600 dark:border-blue-700 shadow-md' 
                   : 'bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 group-hover:shadow'
               }`}>
-                <item.icon size={24} className={isOpen ? 'text-white' : 'text-neutral-700 dark:text-neutral-300'} />
+                <item.icon size={24} className={isSelected ? 'text-white' : 'text-neutral-700 dark:text-neutral-300'} />
               </div>
               <span className={`text-xs font-medium text-center px-2 py-0.5 rounded ${
-                isOpen 
+                isSelected 
                   ? 'bg-blue-500 dark:bg-blue-600 text-white' 
                   : 'bg-white/80 dark:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200'
               }`}>
