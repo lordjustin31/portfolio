@@ -46,7 +46,7 @@ export default function Desktop() {
 
   return (
     <div 
-      className="fixed inset-0 bg-neutral-100 overflow-hidden select-none animate-fade-in"
+      className="fixed inset-0 bg-neutral-100 dark:bg-neutral-900 overflow-hidden select-none animate-fade-in"
       onClick={handleDesktopClick}
       onContextMenu={handleContextMenu}
       style={{
@@ -56,7 +56,7 @@ export default function Desktop() {
     >
       {/* Subtle watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-[12rem] font-bold text-neutral-200/30 select-none tracking-tighter">
+        <div className="text-[12rem] font-bold text-neutral-200/30 dark:text-neutral-700/30 select-none tracking-tighter">
           LJ
         </div>
       </div>

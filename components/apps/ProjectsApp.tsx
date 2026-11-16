@@ -44,11 +44,11 @@ const projects = [
 
 export default function ProjectsApp() {
   return (
-    <div className="h-full bg-neutral-50">
+    <div className="h-full bg-neutral-50 dark:bg-neutral-900">
       {/* Header */}
-      <div className="bg-white border-b border-neutral-200 px-6 py-4">
-        <h2 className="text-lg font-semibold text-neutral-800">Projects</h2>
-        <p className="text-sm text-neutral-600 mt-1">{projects.length} projects</p>
+      <div className="bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 px-6 py-4">
+        <h2 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Projects</h2>
+        <p className="text-sm text-neutral-600 dark:text-neutral-300 mt-1">{projects.length} projects</p>
       </div>
 
       {/* Projects List */}
@@ -56,43 +56,43 @@ export default function ProjectsApp() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+            className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
           >
-            <div className="h-40 bg-gradient-to-br from-neutral-100 to-neutral-200" />
+            <div className="h-40 bg-gradient-to-br from-neutral-100 dark:from-neutral-700 to-neutral-200 dark:to-neutral-800" />
             
             <div className="p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-neutral-800">{project.name}</h3>
-                  <p className="text-sm text-neutral-600">{project.role} • {project.date}</p>
+                  <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100">{project.name}</h3>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300">{project.role} • {project.date}</p>
                 </div>
                 <div className="flex gap-2">
                   <a
                     href={project.demo}
-                    className="p-2 hover:bg-neutral-100 rounded transition-colors"
+                    className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
                     title="View Demo"
                   >
-                    <ExternalLink size={16} className="text-neutral-600" />
+                    <ExternalLink size={16} className="text-neutral-600 dark:text-neutral-300" />
                   </a>
                   <a
                     href={project.source}
-                    className="p-2 hover:bg-neutral-100 rounded transition-colors"
+                    className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
                     title="Source Code"
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-300">
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                     </svg>
                   </a>
                 </div>
               </div>
 
-              <p className="text-neutral-700 mb-4">{project.description}</p>
+              <p className="text-neutral-700 dark:text-neutral-300 mb-4">{project.description}</p>
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 bg-neutral-100 text-neutral-700 rounded text-xs border border-neutral-200"
+                    className="px-2.5 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded text-xs border border-neutral-200 dark:border-neutral-600"
                   >
                     {tech}
                   </span>
@@ -100,10 +100,10 @@ export default function ProjectsApp() {
               </div>
 
               <details className="text-sm">
-                <summary className="cursor-pointer text-neutral-600 hover:text-neutral-800 font-medium">
+                <summary className="cursor-pointer text-neutral-600 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-neutral-100 font-medium">
                   View Details
                 </summary>
-                <div className="mt-3 space-y-2 text-neutral-700">
+                <div className="mt-3 space-y-2 text-neutral-700 dark:text-neutral-300">
                   <div>
                     <strong>Problem:</strong> {project.problem}
                   </div>

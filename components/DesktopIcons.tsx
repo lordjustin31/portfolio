@@ -19,10 +19,10 @@ export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIcons
     <>
       {/* Name Display */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
-        <h1 className="text-4xl font-bold text-neutral-800 tracking-tight mb-2">
+        <h1 className="text-4xl font-bold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
           Lord Justin Bernal
         </h1>
-        <p className="text-neutral-600 text-sm">Personal Workspace</p>
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm">Personal Workspace</p>
       </div>
 
       {/* Desktop Icons */}
@@ -42,21 +42,21 @@ export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIcons
               }}
               className={`absolute ${item.position} flex flex-col items-center gap-1.5 p-3 rounded transition-all ${
                 isOpen 
-                  ? 'bg-blue-100 border-2 border-blue-400' 
-                  : 'hover:bg-white/50 border-2 border-transparent'
+                  ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-400 dark:border-blue-600' 
+                  : 'hover:bg-white/50 dark:hover:bg-neutral-800/50 border-2 border-transparent'
               }`}
             >
               <div className={`w-12 h-12 rounded flex items-center justify-center shadow-sm transition-all ${
                 isOpen 
-                  ? 'bg-blue-500 border border-blue-600 shadow-md' 
-                  : 'bg-white border border-neutral-300 group-hover:shadow'
+                  ? 'bg-blue-500 dark:bg-blue-600 border border-blue-600 dark:border-blue-700 shadow-md' 
+                  : 'bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 group-hover:shadow'
               }`}>
-                <item.icon size={24} className={isOpen ? 'text-white' : 'text-neutral-700'} />
+                <item.icon size={24} className={isOpen ? 'text-white' : 'text-neutral-700 dark:text-neutral-300'} />
               </div>
               <span className={`text-xs font-medium text-center px-2 py-0.5 rounded ${
                 isOpen 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-white/80 text-neutral-800'
+                  ? 'bg-blue-500 dark:bg-blue-600 text-white' 
+                  : 'bg-white/80 dark:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200'
               }`}>
                 {item.label}
               </span>
@@ -64,7 +64,7 @@ export default function DesktopIcons({ onOpenWindow, openWindows }: DesktopIcons
             
             {/* Tooltip */}
             <div className={`absolute ${item.position} left-20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50`}>
-              <div className="bg-neutral-900 text-white text-xs px-3 py-2 rounded shadow-lg whitespace-nowrap">
+              <div className="bg-neutral-900 dark:bg-neutral-950 text-white text-xs px-3 py-2 rounded shadow-lg whitespace-nowrap border border-neutral-800 dark:border-neutral-700">
                 {item.tooltip}
               </div>
             </div>

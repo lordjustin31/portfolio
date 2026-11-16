@@ -70,8 +70,8 @@ export default function Window({
 
   return (
     <div
-      className={`fixed bg-white border rounded-lg shadow-xl overflow-hidden transition-all ${
-        isActive ? 'border-neutral-400' : 'border-neutral-300'
+      className={`fixed bg-white dark:bg-neutral-800 border rounded-lg shadow-xl overflow-hidden transition-all ${
+        isActive ? 'border-neutral-400 dark:border-neutral-600' : 'border-neutral-300 dark:border-neutral-700'
       }`}
       style={{ ...windowStyle, zIndex }}
       onClick={(e) => {
@@ -82,31 +82,33 @@ export default function Window({
       {/* Title Bar */}
       <div
         className={`h-10 px-3 flex items-center justify-between border-b cursor-move select-none ${
-          isActive ? 'bg-neutral-50 border-neutral-200' : 'bg-neutral-100 border-neutral-200'
+          isActive 
+            ? 'bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600' 
+            : 'bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'
         }`}
         onMouseDown={handleMouseDown}
       >
-        <span className="text-sm font-medium text-neutral-800">{title}</span>
+        <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">{title}</span>
         
         <div className="flex items-center gap-2">
           <button
-            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 rounded transition-colors"
+            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
             onClick={(e) => {
               e.stopPropagation();
               // Minimize functionality
             }}
           >
-            <Minus size={14} className="text-neutral-600" />
+            <Minus size={14} className="text-neutral-600 dark:text-neutral-300" />
           </button>
           
           <button
-            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 rounded transition-colors"
+            className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
             onClick={(e) => {
               e.stopPropagation();
               setIsMaximized(!isMaximized);
             }}
           >
-            <Square size={14} className="text-neutral-600" />
+            <Square size={14} className="text-neutral-600 dark:text-neutral-300" />
           </button>
           
           <button
@@ -116,13 +118,13 @@ export default function Window({
               onClose();
             }}
           >
-            <X size={14} />
+            <X size={14} className="text-neutral-600 dark:text-neutral-300" />
           </button>
         </div>
       </div>
 
       {/* Content */}
-      <div className="h-[calc(100%-40px)] overflow-auto">
+      <div className="h-[calc(100%-40px)] overflow-auto bg-white dark:bg-neutral-800">
         {children}
       </div>
     </div>

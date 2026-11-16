@@ -35,29 +35,29 @@ export default function AchievementsApp() {
   return (
     <div className="p-6 space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-neutral-800 mb-2">Achievements & Certifications</h2>
-        <p className="text-neutral-600">Recognition and professional development milestones</p>
+        <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2">Achievements & Certifications</h2>
+        <p className="text-neutral-600 dark:text-neutral-300">Recognition and professional development milestones</p>
       </div>
 
       {/* Achievements */}
       <div>
-        <h3 className="text-lg font-semibold text-neutral-800 mb-4">Achievements</h3>
+        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-4">Achievements</h3>
         <div className="space-y-4">
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="flex gap-4 p-4 border border-neutral-200 rounded-lg hover:shadow-md transition-shadow"
+              className="flex gap-4 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:shadow-md transition-shadow"
             >
-              <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <achievement.icon size={24} className="text-neutral-600" />
+              <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                <achievement.icon size={24} className="text-neutral-600 dark:text-neutral-300" />
               </div>
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-1">
-                  <h4 className="font-semibold text-neutral-800">{achievement.title}</h4>
-                  <span className="text-sm text-neutral-500">{achievement.date}</span>
+                  <h4 className="font-semibold text-neutral-800 dark:text-neutral-100">{achievement.title}</h4>
+                  <span className="text-sm text-neutral-500 dark:text-neutral-400">{achievement.date}</span>
                 </div>
-                <p className="text-sm text-neutral-600 mb-1">{achievement.organization}</p>
-                <p className="text-sm text-neutral-700">{achievement.description}</p>
+                <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-1">{achievement.organization}</p>
+                <p className="text-sm text-neutral-700 dark:text-neutral-300">{achievement.description}</p>
               </div>
             </div>
           ))}
@@ -66,18 +66,18 @@ export default function AchievementsApp() {
 
       {/* Certifications */}
       <div>
-        <h3 className="text-lg font-semibold text-neutral-800 mb-4">Certifications</h3>
+        <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-4">Certifications</h3>
         <div className="grid md:grid-cols-2 gap-3">
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="p-4 border border-neutral-200 rounded-lg bg-neutral-50"
+              className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-neutral-50 dark:bg-neutral-800"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-neutral-200 rounded flex items-center justify-center flex-shrink-0">
-                  <Award size={16} className="text-neutral-600" />
+                <div className="w-8 h-8 bg-neutral-200 dark:bg-neutral-700 rounded flex items-center justify-center flex-shrink-0">
+                  <Award size={16} className="text-neutral-600 dark:text-neutral-300" />
                 </div>
-                <span className="font-medium text-neutral-800">{cert}</span>
+                <span className="font-medium text-neutral-800 dark:text-neutral-100">{cert}</span>
               </div>
             </div>
           ))}
