@@ -6,6 +6,7 @@ interface TaskbarProps {
   isStartMenuOpen: boolean;
   onToggleStartMenu: () => void;
   openWindows: string[];
+  minimizedWindows: string[];
   activeWindow: string | null;
   onWindowClick: (id: string) => void;
 }
@@ -22,6 +23,7 @@ export default function Taskbar({
   isStartMenuOpen,
   onToggleStartMenu,
   openWindows,
+  minimizedWindows,
   activeWindow,
   onWindowClick,
 }: TaskbarProps) {
@@ -62,6 +64,7 @@ export default function Taskbar({
         {openWindows.map((windowId) => {
           const Icon = appIcons[windowId];
           const isActive = activeWindow === windowId;
+          const isMinimized = minimizedWindows.includes(windowId);
           
           return (
             <button
@@ -71,14 +74,15 @@ export default function Taskbar({
                 onWindowClick(windowId);
               }}
               className={`h-9 px-3 flex items-center gap-2 rounded transition-colors relative ${
-                isActive
+                isActive && !isMinimized
                   ? 'bg-neutral-700 dark:bg-neutral-800'
                   : 'hover:bg-neutral-700 dark:hover:bg-neutral-800'
-              }`}
+              } ${isMinimized ? 'opacity-60' : ''}`}
+              title={isMinimized ? `Restore ${windowId}` : windowId}
             >
               {Icon && <Icon size={16} className="text-neutral-300 dark:text-neutral-400" />}
               <span className="text-sm text-neutral-300 dark:text-neutral-400 capitalize">{windowId}</span>
-              {isActive && (
+              {isActive && !isMinimized && (
                 <div className="absolute bottom-0 left-2 right-2 h-0.5 bg-neutral-100 dark:bg-neutral-300" />
               )}
             </button>

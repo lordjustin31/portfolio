@@ -12,6 +12,7 @@ import Notification from './Notification';
 export default function Desktop() {
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [openWindows, setOpenWindows] = useState<string[]>([]);
+  const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [showWelcomeNotification, setShowWelcomeNotification] = useState(true);
@@ -22,6 +23,7 @@ export default function Desktop() {
       closeWindow(windowId);
     } else {
       setOpenWindows([...openWindows, windowId]);
+      setMinimizedWindows(minimizedWindows.filter(id => id !== windowId));
       setActiveWindow(windowId);
       setIsStartMenuOpen(false);
     }
@@ -29,9 +31,28 @@ export default function Desktop() {
 
   const closeWindow = (windowId: string) => {
     setOpenWindows(openWindows.filter(id => id !== windowId));
+    setMinimizedWindows(minimizedWindows.filter(id => id !== windowId));
     if (activeWindow === windowId) {
       setActiveWindow(openWindows[openWindows.length - 2] || null);
     }
+  };
+
+  const minimizeWindow = (windowId: string) => {
+    if (!minimizedWindows.includes(windowId)) {
+      setMinimizedWindows([...minimizedWindows, windowId]);
+      if (activeWindow === windowId) {
+        // Set focus to the next available non-minimized window
+        const remainingWindows = openWindows.filter(
+          id => id !== windowId && !minimizedWindows.includes(id)
+        );
+        setActiveWindow(remainingWindows[remainingWindows.length - 1] || null);
+      }
+    }
+  };
+
+  const restoreWindow = (windowId: string) => {
+    setMinimizedWindows(minimizedWindows.filter(id => id !== windowId));
+    setActiveWindow(windowId);
   };
 
   const handleDesktopClick = () => {
@@ -70,9 +91,11 @@ export default function Desktop() {
       {/* Window Manager */}
       <WindowManager
         openWindows={openWindows}
+        minimizedWindows={minimizedWindows}
         activeWindow={activeWindow}
         onClose={closeWindow}
         onFocus={setActiveWindow}
+        onMinimize={minimizeWindow}
       />
 
       {/* Start Menu */}
@@ -108,10 +131,13 @@ export default function Desktop() {
         isStartMenuOpen={isStartMenuOpen}
         onToggleStartMenu={() => setIsStartMenuOpen(!isStartMenuOpen)}
         openWindows={openWindows}
+        minimizedWindows={minimizedWindows}
         activeWindow={activeWindow}
         onWindowClick={(id) => {
-          if (activeWindow === id) {
-            // Minimize behavior could go here
+          if (minimizedWindows.includes(id)) {
+            restoreWindow(id);
+          } else if (activeWindow === id) {
+            minimizeWindow(id);
           } else {
             setActiveWindow(id);
           }

@@ -10,6 +10,7 @@ interface WindowProps {
   isActive: boolean;
   onClose: () => void;
   onFocus: () => void;
+  onMinimize: () => void;
   zIndex: number;
 }
 
@@ -20,6 +21,7 @@ export default function Window({
   isActive,
   onClose,
   onFocus,
+  onMinimize,
   zIndex,
 }: WindowProps) {
   const [isMaximized, setIsMaximized] = useState(false);
@@ -95,8 +97,9 @@ export default function Window({
             className="w-8 h-6 flex items-center justify-center hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded transition-colors"
             onClick={(e) => {
               e.stopPropagation();
-              // Minimize functionality
+              onMinimize();
             }}
+            title="Minimize"
           >
             <Minus size={14} className="text-neutral-600 dark:text-neutral-300" />
           </button>

@@ -12,9 +12,11 @@ import SettingsApp from './apps/SettingsApp';
 
 interface WindowManagerProps {
   openWindows: string[];
+  minimizedWindows: string[];
   activeWindow: string | null;
   onClose: (id: string) => void;
   onFocus: (id: string) => void;
+  onMinimize: (id: string) => void;
 }
 
 const appComponents: Record<string, any> = {
@@ -41,15 +43,21 @@ const appTitles: Record<string, string> = {
 
 export default function WindowManager({
   openWindows,
+  minimizedWindows,
   activeWindow,
   onClose,
   onFocus,
+  onMinimize,
 }: WindowManagerProps) {
   return (
     <>
       {openWindows.map((windowId, index) => {
         const AppComponent = appComponents[windowId];
         const isActive = activeWindow === windowId;
+        const isMinimized = minimizedWindows.includes(windowId);
+        
+        // Don't render minimized windows
+        if (isMinimized) return null;
         
         return (
           <Window
@@ -59,6 +67,7 @@ export default function WindowManager({
             isActive={isActive}
             onClose={() => onClose(windowId)}
             onFocus={() => onFocus(windowId)}
+            onMinimize={() => onMinimize(windowId)}
             zIndex={isActive ? 30 + openWindows.length : 30 + index}
           >
             {AppComponent && <AppComponent />}
