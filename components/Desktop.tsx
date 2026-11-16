@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 import Taskbar from './Taskbar';
 import StartMenu from './StartMenu';
 import WindowManager from './WindowManager';
@@ -10,6 +11,7 @@ import DesktopWidgets from './DesktopWidgets';
 import Notification from './Notification';
 
 export default function Desktop() {
+  const isMobile = useIsMobile();
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [openWindows, setOpenWindows] = useState<string[]>([]);
   const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
@@ -75,12 +77,14 @@ export default function Desktop() {
                           radial-gradient(circle at 80% 50%, rgba(0,0,0,0.02) 0%, transparent 50%)`
       }}
     >
-      {/* Subtle watermark */}
-      <div className="desktop-watermark absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-[12rem] font-bold text-neutral-200/30 dark:text-neutral-700/30 select-none tracking-tighter">
-          LJ
+      {/* Subtle watermark - Desktop only */}
+      {!isMobile && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="text-[12rem] font-bold text-neutral-200/30 dark:text-neutral-700/30 select-none tracking-tighter">
+            LJ
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Desktop Icons */}
       <DesktopIcons 

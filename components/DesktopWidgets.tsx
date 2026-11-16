@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Briefcase, Code, Award, Download, Mail } from 'lucide-react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface DesktopWidgetsProps {
   onOpenWindow: (windowId: string) => void;
@@ -26,8 +27,14 @@ const projects = [
 ];
 
 export default function DesktopWidgets({ onOpenWindow }: DesktopWidgetsProps) {
+  const isMobile = useIsMobile();
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [time, setTime] = useState('');
+
+  // Don't render widgets on mobile at all (performance optimization)
+  if (isMobile) {
+    return null;
+  }
 
   useEffect(() => {
     // Update time

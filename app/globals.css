@@ -149,11 +149,6 @@ kbd {
     min-height: 44px;
   }
 
-  /* Hide desktop watermark on mobile */
-  .desktop-watermark {
-    display: none !important;
-  }
-
   /* Optimize scrollbar for mobile */
   ::-webkit-scrollbar {
     width: 6px;
