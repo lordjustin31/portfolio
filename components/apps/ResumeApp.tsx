@@ -1,8 +1,11 @@
 'use client';
 
 import { Download, Printer, ExternalLink } from 'lucide-react';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 export default function ResumeApp() {
+  const isMobile = useIsMobile();
+  
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = '/resume.pdf';
@@ -23,33 +26,45 @@ export default function ResumeApp() {
   return (
     <div className="h-full flex flex-col">
       {/* Toolbar */}
-      <div className="bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 px-4 py-3 flex items-center gap-2">
+      <div className={`bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 flex items-center ${
+        isMobile ? 'px-2 py-2 gap-1 flex-wrap' : 'px-4 py-3 gap-2'
+      }`}>
         <button 
           onClick={handleDownload}
-          className="px-4 py-2 bg-neutral-800 dark:bg-neutral-700 text-white text-sm rounded hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-colors flex items-center gap-2"
+          className={`bg-neutral-800 dark:bg-neutral-700 text-white rounded hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-colors flex items-center gap-2 ${
+            isMobile ? 'flex-1 px-3 py-2.5 text-xs justify-center' : 'px-4 py-2 text-sm'
+          }`}
         >
-          <Download size={16} />
-          Download PDF
+          <Download size={isMobile ? 14 : 16} />
+          {!isMobile && 'Download PDF'}
         </button>
-        <button 
-          onClick={handlePrint}
-          className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-sm rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
-        >
-          <Printer size={16} />
-          Print
-        </button>
-        <button 
-          onClick={handleOpenExternal}
-          className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-sm rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
-        >
-          <ExternalLink size={16} />
-          Open External
-        </button>
+        {!isMobile && (
+          <>
+            <button 
+              onClick={handlePrint}
+              className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-sm rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
+            >
+              <Printer size={16} />
+              Print
+            </button>
+            <button 
+              onClick={handleOpenExternal}
+              className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 text-sm rounded hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
+            >
+              <ExternalLink size={16} />
+              Open External
+            </button>
+          </>
+        )}
       </div>
 
       {/* Resume Content */}
-      <div className="flex-1 overflow-auto bg-neutral-100 dark:bg-neutral-900 p-8">
-        <div className="max-w-4xl mx-auto bg-white dark:bg-neutral-800 shadow-lg p-12">
+      <div className={`flex-1 overflow-auto bg-neutral-100 dark:bg-neutral-900 ${
+        isMobile ? 'p-2' : 'p-8'
+      }`}>
+        <div className={`mx-auto bg-white dark:bg-neutral-800 shadow-lg ${
+          isMobile ? 'max-w-full p-6 text-sm' : 'max-w-4xl p-12'
+        }`}>
           {/* Header */}
           <div className="text-center mb-8 pb-6 border-b-2 border-neutral-800 dark:border-neutral-600">
             <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">LORD JUSTIN REIGH T. BERNAL</h1>
