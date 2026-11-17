@@ -8,6 +8,7 @@ import WindowManager from './WindowManager';
 import DesktopIcons from './DesktopIcons';
 import ContextMenu from './ContextMenu';
 import DesktopWidgets from './DesktopWidgets';
+import DesktopCenterContent from './DesktopCenterContent';
 import Notification from './Notification';
 
 export default function Desktop() {
@@ -85,6 +86,9 @@ export default function Desktop() {
           </div>
         </div>
       )}
+
+      {/* Center Workspace Content - Desktop only */}
+      <DesktopCenterContent onOpenWindow={openWindow} />
 
       {/* Desktop Icons */}
       <DesktopIcons 
