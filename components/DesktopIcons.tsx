@@ -24,7 +24,7 @@ export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindo
       {/* Name Display - Hidden on mobile */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center hidden md:block">
         <h1 className="text-4xl font-bold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
-          Lord Justin Bernal
+          Lord Justin Reigh T. Bernal
         </h1>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm">Personal Workspace</p>
       </div>

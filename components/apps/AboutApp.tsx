@@ -17,25 +17,25 @@ export default function AboutApp() {
         <div className="flex-1 w-full">
           <h2 className={`font-bold text-neutral-800 dark:text-neutral-100 mb-1 ${
             isMobile ? 'text-xl' : 'text-2xl'
-          }`}>Lord Justin Bernal</h2>
+          }`}>Lord Justin Reigh T. Bernal</h2>
           <p className={`text-neutral-600 dark:text-neutral-300 mb-4 ${
             isMobile ? 'text-sm' : 'text-base'
-          }`}>Frontend Developer / UI Designer</p>
+          }`}>BS Information Technology Graduate</p>
           
           <div className={`grid gap-4 text-sm ${
             isMobile ? 'grid-cols-1' : 'grid-cols-3'
           }`}>
             <div>
               <p className="text-neutral-500 dark:text-neutral-400">Location</p>
-              <p className="text-neutral-800 dark:text-neutral-100 font-medium">Philippines</p>
+              <p className="text-neutral-800 dark:text-neutral-100 font-medium">Tondo, Manila</p>
             </div>
             <div>
-              <p className="text-neutral-500 dark:text-neutral-400">Experience</p>
-              <p className="text-neutral-800 dark:text-neutral-100 font-medium">3+ Years</p>
+              <p className="text-neutral-500 dark:text-neutral-400">Email</p>
+              <p className="text-neutral-800 dark:text-neutral-100 font-medium text-xs">justin31tarca@gmail.com</p>
             </div>
             <div>
-              <p className="text-neutral-500 dark:text-neutral-400">Specialization</p>
-              <p className="text-neutral-800 dark:text-neutral-100 font-medium">Frontend</p>
+              <p className="text-neutral-500 dark:text-neutral-400">Phone</p>
+              <p className="text-neutral-800 dark:text-neutral-100 font-medium">09126039520</p>
             </div>
           </div>
         </div>
@@ -44,33 +44,38 @@ export default function AboutApp() {
       <div className={`border-t border-neutral-200 dark:border-neutral-700 ${isMobile ? 'pt-4' : 'pt-6'}`}>
         <h3 className={`font-semibold text-neutral-800 dark:text-neutral-100 mb-3 ${
           isMobile ? 'text-base' : 'text-lg'
-        }`}>About Me</h3>
+        }`}>Professional Summary</h3>
         <p className={`text-neutral-700 dark:text-neutral-300 leading-relaxed ${
           isMobile ? 'text-sm' : 'text-base'
         }`}>
-          I'm a passionate frontend developer with a strong focus on creating beautiful, 
-          functional, and user-friendly web applications. I specialize in modern web technologies 
-          including React, Next.js, and TypeScript. I love building interfaces that not only 
-          look great but provide exceptional user experiences.
+          BS Information Technology graduate with hands-on experience in web development, database-driven applications, 
+          WordPress website management, and technical troubleshooting through academic projects, internship training, 
+          and freelance computer support. Familiar with PHP, Java, JavaScript, Python, React, Django REST Framework, and 
+          MySQL, with additional training in Java object-oriented programming and analysis and design. Eager to contribute 
+          technical problem-solving skills and continue developing in an entry-level software development, application 
+          support, or IT role.
         </p>
       </div>
 
       <div className={`border-t border-neutral-200 dark:border-neutral-700 ${isMobile ? 'pt-4' : 'pt-6'}`}>
         <h3 className={`font-semibold text-neutral-800 dark:text-neutral-100 mb-3 ${
           isMobile ? 'text-base' : 'text-lg'
-        }`}>Current Focus</h3>
-        <p className={`text-neutral-700 dark:text-neutral-300 leading-relaxed ${
-          isMobile ? 'text-sm' : 'text-base'
-        }`}>
-          Currently exploring advanced UI/UX patterns, accessibility best practices, 
-          and performance optimization techniques. Always learning and improving my craft.
-        </p>
+        }`}>Education</h3>
+        <div className={`text-neutral-700 dark:text-neutral-300 ${isMobile ? 'text-sm' : 'text-base'}`}>
+          <h4 className="font-semibold text-neutral-800 dark:text-neutral-100">Bachelor of Science in Information Technology (BSIT)</h4>
+          <p className="text-neutral-600 dark:text-neutral-400 mb-1">Eulogio "Amang" Rodriguez Institute of Science and Technology (EARIST) – Manila</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-500 mb-2">2022 – 2026</p>
+          <p className="text-sm">
+            <strong>Relevant Coursework:</strong> Software Development, Web Programming, Database Management, 
+            Network Administration, Systems Analysis
+          </p>
+        </div>
       </div>
 
       <div className={`border-t border-neutral-200 dark:border-neutral-700 ${isMobile ? 'pt-4' : 'pt-6'}`}>
         <h3 className={`font-semibold text-neutral-800 dark:text-neutral-100 mb-3 ${
           isMobile ? 'text-base' : 'text-lg'
-        }`}>Interests</h3>
+        }`}>Core Competencies</h3>
         <div className="flex flex-wrap gap-2">
           <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
             isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
@@ -80,17 +85,40 @@ export default function AboutApp() {
           <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
             isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
           }`}>
-            UI/UX Design
+            Database Management
           </span>
           <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
             isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
           }`}>
-            Open Source
+            WordPress Management
           </span>
           <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
             isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
           }`}>
-            Tech Community
+            Technical Troubleshooting
+          </span>
+          <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
+            isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
+          }`}>
+            AI-Assisted Development
+          </span>
+        </div>
+      </div>
+
+      <div className={`border-t border-neutral-200 dark:border-neutral-700 ${isMobile ? 'pt-4' : 'pt-6'}`}>
+        <h3 className={`font-semibold text-neutral-800 dark:text-neutral-100 mb-3 ${
+          isMobile ? 'text-base' : 'text-lg'
+        }`}>Languages</h3>
+        <div className="flex flex-wrap gap-2">
+          <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
+            isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
+          }`}>
+            English
+          </span>
+          <span className={`bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded border border-neutral-200 dark:border-neutral-700 ${
+            isMobile ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
+          }`}>
+            Filipino / Tagalog
           </span>
         </div>
       </div>

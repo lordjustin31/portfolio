@@ -61,7 +61,7 @@ export default function ContactApp() {
         isMobile ? 'grid-cols-1' : 'grid-cols-3'
       }`}>
         <a
-          href="mailto:lordjustinbernal@example.com"
+          href="mailto:justin31tarca@gmail.com"
           className={`border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors text-center ${
             isMobile ? 'p-5 flex items-center gap-4 text-left' : 'p-4'
           }`}
@@ -73,11 +73,11 @@ export default function ContactApp() {
             <p className={`font-medium text-neutral-800 dark:text-neutral-100 ${
               isMobile ? 'text-base mb-1' : 'text-sm'
             }`}>Email</p>
-            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">lordjustinbernal@example.com</p>}
+            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">justin31tarca@gmail.com</p>}
           </div>
         </a>
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/lordjustin31"
           target="_blank"
           rel="noopener noreferrer"
           className={`border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors text-center ${
@@ -93,13 +93,11 @@ export default function ContactApp() {
             <p className={`font-medium text-neutral-800 dark:text-neutral-100 ${
               isMobile ? 'text-base mb-1' : 'text-sm'
             }`}>GitHub</p>
-            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">github.com/yourusername</p>}
+            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">github.com/lordjustin31</p>}
           </div>
         </a>
         <a
-          href="https://linkedin.com/in/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="tel:09126039520"
           className={`border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors text-center ${
             isMobile ? 'p-5 flex items-center gap-4 text-left' : 'p-4'
           }`}
@@ -107,15 +105,13 @@ export default function ContactApp() {
           <svg width={isMobile ? 28 : 24} height={isMobile ? 28 : 24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`text-neutral-600 dark:text-neutral-300 ${
             isMobile ? '' : 'mx-auto mb-2'
           }`}>
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
           </svg>
           <div>
             <p className={`font-medium text-neutral-800 dark:text-neutral-100 ${
               isMobile ? 'text-base mb-1' : 'text-sm'
-            }`}>LinkedIn</p>
-            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">linkedin.com/in/yourusername</p>}
+            }`}>Phone</p>
+            {isMobile && <p className="text-xs text-neutral-600 dark:text-neutral-400">09126039520</p>}
           </div>
         </a>
       </div>

@@ -46,10 +46,10 @@ export default function StartMenu({ onClose, onOpenWindow }: StartMenuProps) {
           <div>
             <h3 className={`font-semibold text-neutral-100 dark:text-neutral-200 ${
               isMobile ? 'text-base' : 'text-sm'
-            }`}>Lord Justin Bernal</h3>
+            }`}>Lord Justin Reigh T. Bernal</h3>
             <p className={`text-neutral-400 dark:text-neutral-500 ${
               isMobile ? 'text-sm' : 'text-xs'
-            }`}>Frontend Developer</p>
+            }`}>BS Information Technology</p>
           </div>
         </div>
       </div>
