@@ -9,19 +9,14 @@ interface DesktopWidgetsProps {
 
 const projects = [
   {
-    name: 'E-Commerce Platform',
-    description: 'Full-featured shopping platform',
-    tech: 'React, Next.js, Stripe',
+    name: 'HomeEase',
+    description: 'Web-Based Homeowner Information System',
+    tech: 'React, TypeScript, Django REST',
   },
   {
-    name: 'Dashboard Analytics',
-    description: 'Real-time business metrics',
-    tech: 'React, TypeScript, Chart.js',
-  },
-  {
-    name: 'Task Management App',
-    description: 'Collaborative team tool',
-    tech: 'React, Firebase, Material-UI',
+    name: 'Banking Application',
+    description: 'Java OOP Banking System',
+    tech: 'Java, OOP, MySQL, XAMPP',
   },
 ];
 
@@ -64,16 +59,16 @@ export default function DesktopWidgets({ onOpenWindow }: DesktopWidgetsProps) {
         </div>
         <div className="grid grid-cols-3 gap-3 text-center">
           <div>
-            <div className="text-2xl font-bold text-neutral-800">3+</div>
-            <div className="text-xs text-neutral-600">Years Exp</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-neutral-800">15+</div>
+            <div className="text-2xl font-bold text-neutral-800">2</div>
             <div className="text-xs text-neutral-600">Projects</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-neutral-800">100%</div>
-            <div className="text-xs text-neutral-600">Satisfied</div>
+            <div className="text-2xl font-bold text-neutral-800">5+</div>
+            <div className="text-xs text-neutral-600">Certs</div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-neutral-800">2026</div>
+            <div className="text-xs text-neutral-600">Graduate</div>
           </div>
         </div>
       </div>
@@ -130,7 +125,7 @@ export default function DesktopWidgets({ onOpenWindow }: DesktopWidgetsProps) {
           <button 
             onClick={(e) => {
               e.stopPropagation();
-              onOpenWindow('resume'); // Just open the resume window
+              onOpenWindow('resume');
             }}
             className="w-full flex items-center gap-2 px-3 py-2 bg-neutral-100 hover:bg-neutral-200 rounded transition-colors text-sm text-left"
           >
