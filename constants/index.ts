@@ -28,6 +28,7 @@ export const APP_CONFIG = {
     THEME: 'portfolio-theme',
     WINDOW_STATE: 'portfolio-window-state',
     VISITED: 'portfolio-visited',
+    HIDDEN_WIDGETS: 'portfolio-hidden-widgets',
   },
 } as const;
 
