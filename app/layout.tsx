@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import { SITE_CONFIG } from "@/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Lord Justin Bernal",
-  description: "Personal portfolio showcasing my web development projects and skills",
+  title: `${SITE_CONFIG.TITLE} - ${SITE_CONFIG.NAME}`,
+  description: SITE_CONFIG.DESCRIPTION,
+  authors: [{ name: SITE_CONFIG.AUTHOR.NAME }],
+  keywords: ['portfolio', 'web developer', 'frontend developer', 'BSIT', 'Next.js', 'React', 'TypeScript'],
+  openGraph: {
+    title: `${SITE_CONFIG.TITLE} - ${SITE_CONFIG.NAME}`,
+    description: SITE_CONFIG.DESCRIPTION,
+    url: SITE_CONFIG.URL,
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -48,9 +58,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

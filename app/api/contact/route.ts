@@ -1,65 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
-// Rate limiting: Store request timestamps by IP
-const rateLimitMap = new Map<string, number[]>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const MAX_REQUESTS = 3; // Max 3 requests per minute
-
-// Email validation regex
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// Sanitize HTML to prevent XSS
-function sanitizeInput(input: string): string {
-  return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
-}
-
-// Rate limiting check
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const requests = rateLimitMap.get(ip) || [];
-  
-  // Filter out old requests outside the window
-  const recentRequests = requests.filter(time => now - time < RATE_LIMIT_WINDOW);
-  
-  if (recentRequests.length >= MAX_REQUESTS) {
-    return false;
-  }
-  
-  // Add current request
-  recentRequests.push(now);
-  rateLimitMap.set(ip, recentRequests);
-  
-  // Clean up old entries periodically
-  if (rateLimitMap.size > 1000) {
-    rateLimitMap.clear();
-  }
-  
-  return true;
-}
+import { contactRateLimiter } from '@/lib/rate-limiter';
+import { sanitizeInput, validateEmail, validateContactForm } from '@/lib/validation';
+import { getClientIP, getErrorMessage } from '@/lib/utils';
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/constants';
+import type { ContactFormData, ApiResponse } from '@/types';
 
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
-    const ip = request.headers.get('x-forwarded-for') || 
-               request.headers.get('x-real-ip') || 
-               'unknown';
+    const ip = getClientIP(request.headers);
 
     // Check rate limit
-    if (!checkRateLimit(ip)) {
-      return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
+    if (!contactRateLimiter.check(ip)) {
+      return NextResponse.json<ApiResponse>(
+        { success: false, error: ERROR_MESSAGES.RATE_LIMIT },
         { status: 429 }
       );
     }
 
-    const { name, email, subject, message, website } = await request.json();
+    const body = await request.json() as ContactFormData;
+    const { name, email, subject, message, website } = body;
 
     // HONEYPOT CHECK: If website field is filled, it's a bot!
     if (website && website.trim() !== '') {
@@ -67,32 +28,36 @@ export async function POST(request: NextRequest) {
         console.log('🍯 Honeypot caught a bot! IP:', ip, 'Website field:', website);
       }
       // Return success to fool the bot, but don't send email
-      return NextResponse.json(
-        { message: 'Email sent successfully' },
+      return NextResponse.json<ApiResponse>(
+        { success: true, message: SUCCESS_MESSAGES.CONTACT_SENT },
         { status: 200 }
       );
     }
 
-    // Validate all fields are present
-    if (!name || !email || !subject || !message) {
-      return NextResponse.json(
-        { error: 'All fields are required' },
+    // Validate form data
+    const validation = validateContactForm({ name, email, message });
+    if (!validation.isValid) {
+      return NextResponse.json<ApiResponse>(
+        { 
+          success: false, 
+          error: ERROR_MESSAGES.VALIDATION,
+          data: validation.errors 
+        },
         { status: 400 }
       );
     }
 
-    // Validate field lengths
-    if (name.length > 100 || subject.length > 200 || message.length > 2000) {
-      return NextResponse.json(
-        { error: 'Input exceeds maximum length' },
+    // Validate subject field
+    if (!subject || subject.trim().length === 0) {
+      return NextResponse.json<ApiResponse>(
+        { success: false, error: 'Subject is required' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    if (!EMAIL_REGEX.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
+    if (subject.length > 200) {
+      return NextResponse.json<ApiResponse>(
+        { success: false, error: 'Subject must be less than 200 characters' },
         { status: 400 }
       );
     }
@@ -102,8 +67,8 @@ export async function POST(request: NextRequest) {
       if (process.env.NODE_ENV === 'development') {
         console.error('Email credentials not configured');
       }
-      return NextResponse.json(
-        { error: 'Email service not configured' },
+      return NextResponse.json<ApiResponse>(
+        { success: false, error: ERROR_MESSAGES.SERVER },
         { status: 500 }
       );
     }
@@ -141,8 +106,8 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    return NextResponse.json(
-      { message: 'Email sent successfully' },
+    return NextResponse.json<ApiResponse>(
+      { success: true, message: SUCCESS_MESSAGES.CONTACT_SENT },
       { status: 200 }
     );
   } catch (error) {
@@ -150,8 +115,8 @@ export async function POST(request: NextRequest) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Email error:', error);
     }
-    return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
+    return NextResponse.json<ApiResponse>(
+      { success: false, error: ERROR_MESSAGES.SERVER },
       { status: 500 }
     );
   }
@@ -159,8 +124,8 @@ export async function POST(request: NextRequest) {
 
 // Reject non-POST requests
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
+  return NextResponse.json<ApiResponse>(
+    { success: false, error: 'Method not allowed' },
     { status: 405 }
   );
 }
