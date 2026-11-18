@@ -193,7 +193,7 @@ export default function DesktopCenterContent({ onOpenWindow }: DesktopCenterCont
   // Render center content differently on mobile
   if (isMobile) {
     return (
-      <div className="px-4 pt-[280px] pb-20 space-y-6">
+      <div className="relative px-4 pt-4 pb-24 space-y-6 mt-[340px]">
         {/* Mobile: Featured Projects Section */}
         <div className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl shadow-lg overflow-hidden">
           <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-700 dark:to-neutral-800 border-b border-neutral-200 dark:border-neutral-600 px-4 py-3">

@@ -85,7 +85,9 @@ export default function Desktop() {
 
   return (
     <div 
-      className="fixed inset-0 bg-neutral-100 dark:bg-neutral-900 overflow-hidden select-none animate-fade-in"
+      className={`fixed inset-0 bg-neutral-100 dark:bg-neutral-900 select-none animate-fade-in ${
+        isMobile ? 'overflow-y-auto' : 'overflow-hidden'
+      }`}
       onClick={handleDesktopClick}
       onContextMenu={handleContextMenu}
       style={{
