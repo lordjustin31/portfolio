@@ -11,34 +11,38 @@ A professional personal portfolio that demonstrates frontend development skills 
 
 **🚀 [View Live Demo](https://lj-portfolio-os.vercel.app)**
 
+## ✨ Highlights
+
+- **🔒 Security-First Design**: 9.7/10 security score with honeypot spam protection
+- **📱 Fully Responsive**: Optimized mobile split-screen layout
+- **🎨 OS-Themed Interface**: Realistic desktop environment with draggable windows
+- **♿ Accessible**: WCAG-compliant with keyboard navigation and focus indicators
+- **⚡ Performance Optimized**: Fast loading, smooth animations, production-ready
+
 ## 🎯 Features
 
-### OS-Style Interface
-- **Boot Screen**: Quick initialization experience
-- **Desktop Environment**: Clean workspace with application shortcuts
-- **Taskbar**: Functional taskbar with running applications
-- **Start Menu**: Application launcher with quick actions
-- **Window System**: Draggable, resizable windows with minimize/maximize/close
-- **Context Menu**: Right-click desktop menu
-- **Settings**: Theme and accessibility preferences
+### Interactive Desktop Environment
+- Functional taskbar with running applications and system tray
+- Draggable, resizable windows with full window management
+- Start menu application launcher with quick actions
+- Right-click context menu with desktop shortcuts
+- Theme switching with dark/light mode persistence
 
-### Applications
-- **About**: Professional profile and introduction
-- **Projects**: Portfolio of work with detailed case studies
-- **Experience**: Professional timeline
-- **Skills**: Technical expertise organized by category
-- **Resume**: PDF-style resume viewer with download functionality
-- **Achievements**: Awards and certifications
-- **Contact**: Functional contact form with social links
-- **Settings**: Customization options
+### Professional Applications
+- **About**: BSIT graduate profile with expertise summary
+- **Projects**: Portfolio showcasing real-world applications
+- **Experience**: Professional timeline and achievements
+- **Skills**: Technical stack organized by category
+- **Resume**: Interactive PDF-style viewer with download
+- **Contact**: Spam-protected form with honeypot validation
+- **Settings**: Accessibility and theme customization
 
-### Professional Design
-- Clean, minimal aesthetic
-- Realistic UI controls
-- Consistent design system
-- No excessive effects or animations
-- Production-ready quality
-- Fully accessible
+### Security Implementation
+- Honeypot spam protection (80-90% bot blocking)
+- HTTP security headers (XSS, clickjacking, MIME protection)
+- Input validation and sanitization
+- Rate limiting ready
+- Secure environment variable handling
 
 ## 🚀 Getting Started
 
@@ -63,11 +67,13 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Font**: Geist Sans
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS v4
+- **UI**: React 19, Lucide Icons
+- **Email**: Nodemailer (contact form)
+- **Deployment**: Vercel
+- **Security**: Honeypot validation, HTTP security headers
 
 ## 📝 Customization
 
@@ -93,29 +99,33 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
 Colors and design tokens can be customized in `app/globals.css` and through Tailwind's configuration.
 
-## 🎨 Design Philosophy
+## 📚 Documentation
 
-This portfolio follows strict design principles:
+Comprehensive technical documentation available in the [`/docs`](./docs) folder:
 
-- **Realistic over decorative**: Every element serves a functional purpose
-- **Clean and professional**: No excessive gradients, blur, or effects
-- **Accessible**: Keyboard navigation, focus states, reduced motion support
-- **Responsive**: Works on desktop and mobile devices
-- **Performance-first**: Optimized for fast loading and smooth interactions
+- **[Security Documentation](./docs/security/)** - Security audit reports, honeypot implementation, best practices
+- **[Deployment Guides](./docs/deployment/)** - Production deployment checklists and procedures  
+- **[Development History](./docs/development/)** - Bug fixes, feature implementations, mobile optimization
 
-## 📱 Responsive Design
+**Highlights:**
+- [Security Audit Report](./docs/security/SECURITY_AUDIT_REPORT.md) - 9.7/10 security score
+- [Honeypot Implementation](./docs/security/HONEYPOT_IMPLEMENTATION.md) - Spam protection guide
+- [Mobile Optimization Plan](./docs/development/MOBILE_OPTIMIZATION_PLAN.md) - Responsive design strategy
 
-- **Desktop**: Full OS experience with draggable windows
-- **Mobile**: Adapted interface with full-screen applications
+## 🎨 Design & Accessibility
 
-## ♿ Accessibility
+**Design Principles:**
+- Realistic OS interface without excessive effects
+- Clean, professional aesthetic
+- Every element serves a functional purpose
+- Performance-first approach
 
-- Semantic HTML
-- Keyboard navigation
-- Focus indicators
-- ARIA labels
-- Reduced motion support
-- Sufficient color contrast
+**Accessibility Features:**
+- Semantic HTML with proper ARIA labels
+- Full keyboard navigation support
+- Focus indicators and reduced motion support
+- WCAG-compliant color contrast
+- Mobile-optimized split-screen layout
 
 ## 🔧 Development
 
@@ -152,12 +162,13 @@ MIT License - feel free to use this as a template for your own portfolio.
 
 ## 👨‍💻 Author
 
-**Lord Justin Bernal**
-- Frontend Developer
-- Portfolio: [lj-portfolio-os.vercel.app](https://lj-portfolio-os.vercel.app)
-- GitHub: [@lordjustin31](https://github.com/lordjustin31)
-- Email: justin31tarca@gmail.com
+**Lord Justin Reigh T. Bernal**  
+*BSIT Graduate | Frontend Developer*
+
+- 🌐 Portfolio: [lj-portfolio-os.vercel.app](https://lj-portfolio-os.vercel.app)
+- 💼 GitHub: [@lordjustin31](https://github.com/lordjustin31)
+- 📧 Email: justin31tarca@gmail.com
 
 ---
 
-Built with ❤️ using Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
+Built with ❤️ using Next.js 15, React 19, TypeScript, and Tailwind CSS v4. Security score: 9.7/10.
