@@ -6,6 +6,7 @@ import { useIsMobile } from '@/hooks/useMediaQuery';
 interface TaskbarProps {
   isStartMenuOpen: boolean;
   onToggleStartMenu: () => void;
+  onOpenSearch: () => void;
   openWindows: string[];
   minimizedWindows: string[];
   activeWindow: string | null;
@@ -23,6 +24,7 @@ const appIcons: Record<string, any> = {
 export default function Taskbar({
   isStartMenuOpen,
   onToggleStartMenu,
+  onOpenSearch,
   openWindows,
   minimizedWindows,
   activeWindow,
@@ -62,7 +64,13 @@ export default function Taskbar({
 
       {/* Search - Hidden on mobile */}
       {!isMobile && (
-        <button className="h-9 px-3 flex items-center gap-2 hover:bg-neutral-700 dark:hover:bg-neutral-800 rounded transition-colors flex-shrink-0">
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenSearch();
+          }}
+          className="h-9 px-3 flex items-center gap-2 hover:bg-neutral-700 dark:hover:bg-neutral-800 rounded transition-colors flex-shrink-0"
+        >
           <Search size={16} className="text-neutral-400 dark:text-neutral-500" />
           <span className="text-sm text-neutral-400 dark:text-neutral-500">Search</span>
         </button>

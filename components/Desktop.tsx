@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 import Taskbar from './Taskbar';
 import StartMenu from './StartMenu';
@@ -10,6 +10,7 @@ import ContextMenu from './ContextMenu';
 import DesktopWidgets from './DesktopWidgets';
 import DesktopCenterContent from './DesktopCenterContent';
 import Notification from './Notification';
+import SearchModal from './SearchModal';
 
 export default function Desktop() {
   const isMobile = useIsMobile();
@@ -19,6 +20,20 @@ export default function Desktop() {
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [showWelcomeNotification, setShowWelcomeNotification] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Keyboard shortcut for search (Ctrl+K / Cmd+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const openWindow = (windowId: string) => {
     // Toggle: if already open, close it; otherwise open it
@@ -128,6 +143,14 @@ export default function Desktop() {
         />
       )}
 
+      {/* Search Modal */}
+      {isSearchOpen && (
+        <SearchModal
+          onClose={() => setIsSearchOpen(false)}
+          onOpenWindow={openWindow}
+        />
+      )}
+
       {/* Welcome Notification */}
       {showWelcomeNotification && (
         <Notification
@@ -142,6 +165,7 @@ export default function Desktop() {
       <Taskbar
         isStartMenuOpen={isStartMenuOpen}
         onToggleStartMenu={() => setIsStartMenuOpen(!isStartMenuOpen)}
+        onOpenSearch={() => setIsSearchOpen(true)}
         openWindows={openWindows}
         minimizedWindows={minimizedWindows}
         activeWindow={activeWindow}
