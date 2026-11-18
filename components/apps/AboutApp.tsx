@@ -1,17 +1,39 @@
 import { useIsMobile } from '@/hooks/useMediaQuery';
+import Image from 'next/image';
+import { useState } from 'react';
+import ImageModal from '../ImageModal';
 
 export default function AboutApp() {
   const isMobile = useIsMobile();
+  const [showImageModal, setShowImageModal] = useState(false);
   
   return (
     <div className={isMobile ? 'p-4 space-y-4' : 'p-6 space-y-6'}>
       <div className={`flex gap-6 ${isMobile ? 'flex-col items-center text-center' : 'items-start'}`}>
-        <div className={`bg-neutral-200 dark:bg-neutral-700 rounded-full flex items-center justify-center flex-shrink-0 ${
-          isMobile ? 'w-20 h-20' : 'w-24 h-24'
-        }`}>
-          <span className={`font-bold text-neutral-600 dark:text-neutral-300 ${
-            isMobile ? 'text-2xl' : 'text-3xl'
-          }`}>LJ</span>
+        <div 
+          className={`rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden border-4 border-neutral-300 dark:border-neutral-600 shadow-lg cursor-pointer hover:shadow-xl hover:scale-105 transition-all group relative ${
+            isMobile ? 'w-20 h-20' : 'w-24 h-24'
+          }`}
+          onClick={() => setShowImageModal(true)}
+          title="Click to view full size"
+        >
+          <Image
+            src="/images/profile.jpg"
+            alt="Lord Justin Reigh T. Bernal"
+            width={96}
+            height={96}
+            className="object-cover w-full h-full"
+            priority
+          />
+          {/* Hover overlay with zoom icon */}
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
         </div>
         
         <div className="flex-1 w-full">
@@ -122,6 +144,15 @@ export default function AboutApp() {
           </span>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {showImageModal && (
+        <ImageModal
+          src="/images/profile.jpg"
+          alt="Lord Justin Reigh T. Bernal - Professional Photo"
+          onClose={() => setShowImageModal(false)}
+        />
+      )}
     </div>
   );
 }

@@ -1,12 +1,17 @@
 'use client';
 
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import ImageModal from './ImageModal';
 
 interface LandingScreenProps {
   onEnter: () => void;
 }
 
 export default function LandingScreen({ onEnter }: LandingScreenProps) {
+  const [showImageModal, setShowImageModal] = useState(false);
+  
   return (
     <div className="fixed inset-0 bg-neutral-100 flex items-center justify-center overflow-hidden animate-fade-in">
       {/* Subtle background pattern */}
@@ -21,8 +26,28 @@ export default function LandingScreen({ onEnter }: LandingScreenProps) {
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         {/* Profile/Avatar */}
         <div className="mb-8 inline-block">
-          <div className="w-24 h-24 bg-neutral-800 rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-            <span className="text-3xl font-bold text-white">LJ</span>
+          <div 
+            className="w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-white cursor-pointer hover:shadow-2xl hover:scale-105 transition-all group relative"
+            onClick={() => setShowImageModal(true)}
+            title="Click to view full size"
+          >
+            <Image
+              src="/images/profile.jpg"
+              alt="Lord Justin Reigh T. Bernal"
+              width={96}
+              height={96}
+              className="object-cover w-full h-full"
+              priority
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -98,6 +123,15 @@ export default function LandingScreen({ onEnter }: LandingScreenProps) {
           or press <kbd className="px-2 py-1 bg-white border border-neutral-300 rounded text-neutral-600 font-mono">Enter</kbd> to continue
         </p>
       </div>
+
+      {/* Image Modal */}
+      {showImageModal && (
+        <ImageModal
+          src="/images/profile.jpg"
+          alt="Lord Justin Reigh T. Bernal - Professional Photo"
+          onClose={() => setShowImageModal(false)}
+        />
+      )}
     </div>
   );
 }

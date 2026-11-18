@@ -2,6 +2,9 @@
 
 import { User, FolderOpen, Briefcase, Code, FileText, Award, Mail, Settings, Download } from 'lucide-react';
 import { useIsMobile } from '@/hooks/useMediaQuery';
+import Image from 'next/image';
+import { useState } from 'react';
+import ImageModal from './ImageModal';
 
 interface StartMenuProps {
   onClose: () => void;
@@ -21,6 +24,7 @@ const applications = [
 
 export default function StartMenu({ onClose, onOpenWindow }: StartMenuProps) {
   const isMobile = useIsMobile();
+  const [showImageModal, setShowImageModal] = useState(false);
   
   return (
     <div
@@ -36,12 +40,32 @@ export default function StartMenu({ onClose, onOpenWindow }: StartMenuProps) {
         isMobile ? 'p-5' : 'p-4'
       }`}>
         <div className="flex items-center gap-3">
-          <div className={`bg-neutral-700 dark:bg-neutral-800 rounded-full flex items-center justify-center ${
-            isMobile ? 'w-14 h-14' : 'w-12 h-12'
-          }`}>
-            <span className={`font-semibold text-neutral-200 dark:text-neutral-300 ${
-              isMobile ? 'text-xl' : 'text-lg'
-            }`}>LJ</span>
+          <div 
+            className={`rounded-full flex items-center justify-center overflow-hidden border-2 border-neutral-600 dark:border-neutral-700 cursor-pointer hover:border-neutral-400 dark:hover:border-neutral-500 transition-all group relative ${
+              isMobile ? 'w-14 h-14' : 'w-12 h-12'
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowImageModal(true);
+            }}
+            title="Click to view full size"
+          >
+            <Image
+              src="/images/profile.jpg"
+              alt="Lord Justin Reigh T. Bernal"
+              width={56}
+              height={56}
+              className="object-cover w-full h-full"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
           </div>
           <div>
             <h3 className={`font-semibold text-neutral-100 dark:text-neutral-200 ${
@@ -129,6 +153,15 @@ export default function StartMenu({ onClose, onOpenWindow }: StartMenuProps) {
           </a>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {showImageModal && (
+        <ImageModal
+          src="/images/profile.jpg"
+          alt="Lord Justin Reigh T. Bernal - Professional Photo"
+          onClose={() => setShowImageModal(false)}
+        />
+      )}
     </div>
   );
 }
