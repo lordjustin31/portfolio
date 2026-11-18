@@ -29,10 +29,10 @@ export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindo
         <p className="text-neutral-600 dark:text-neutral-400 text-sm">Personal Workspace</p>
       </div>
 
-      {/* Desktop Icons - Grid on mobile, absolute on desktop */}
+      {/* Desktop Icons - Vertical column on left for mobile, absolute on desktop */}
       <div className={
         isMobile 
-          ? "grid grid-cols-2 sm:grid-cols-3 gap-4 p-6 pt-8"
+          ? "fixed left-0 top-0 bottom-14 w-24 flex flex-col gap-3 p-4 pt-8 z-10 overflow-y-auto"
           : "contents"
       }>
         {icons.map((item) => {
@@ -54,7 +54,7 @@ export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindo
                 className={`
                   ${isMobile ? 'relative w-full' : `absolute ${item.position}`}
                   flex flex-col items-center gap-1.5 
-                  ${isMobile ? 'p-4' : 'p-3'} 
+                  ${isMobile ? 'p-2' : 'p-3'} 
                   rounded transition-all touch-manipulation
                   ${isSelected 
                     ? 'bg-blue-100 dark:bg-blue-900/30 border-2 border-blue-400 dark:border-blue-600' 
@@ -63,7 +63,7 @@ export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindo
                 `}
               >
                 <div className={`
-                  ${isMobile ? 'w-16 h-16' : 'w-12 h-12'}
+                  ${isMobile ? 'w-12 h-12' : 'w-12 h-12'}
                   rounded flex items-center justify-center shadow-sm transition-all
                   ${isSelected 
                     ? 'bg-blue-500 dark:bg-blue-600 border border-blue-600 dark:border-blue-700 shadow-md' 
@@ -74,7 +74,7 @@ export default function DesktopIcons({ onOpenWindow, openWindows, minimizedWindo
                 </div>
                 <span className={`
                   text-xs font-medium text-center px-2 py-0.5 rounded
-                  ${isMobile ? 'text-sm' : 'text-xs'}
+                  ${isMobile ? 'text-[10px]' : 'text-xs'}
                   ${isSelected 
                     ? 'bg-blue-500 dark:bg-blue-600 text-white' 
                     : 'bg-white/80 dark:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200'
