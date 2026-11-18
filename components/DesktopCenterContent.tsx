@@ -196,7 +196,7 @@ export default function DesktopCenterContent({ onOpenWindow }: DesktopCenterCont
   }
 
   return (
-    <div className="absolute left-32 right-96 top-24 bottom-16 overflow-y-auto overflow-x-hidden scrollbar-thin">
+    <div className="absolute left-32 right-96 top-32 bottom-16 overflow-y-auto overflow-x-hidden scrollbar-thin">
       <div className="max-w-4xl mx-auto space-y-8 pb-8">
         
         {/* SECTION 1: FEATURED PROJECTS CAROUSEL */}
