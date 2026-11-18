@@ -11,6 +11,7 @@ export default function ContactApp() {
     email: '',
     subject: '',
     message: '',
+    website: '', // Honeypot field
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
@@ -31,7 +32,7 @@ export default function ContactApp() {
         setStatus('sent');
         setTimeout(() => {
           setStatus('idle');
-          setFormData({ name: '', email: '', subject: '', message: '' });
+          setFormData({ name: '', email: '', subject: '', message: '', website: '' });
         }, 3000);
       } else {
         setStatus('error');
@@ -118,6 +119,18 @@ export default function ContactApp() {
 
       {/* Contact Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Honeypot Field - Hidden from users, catches bots */}
+        <input
+          type="text"
+          name="website"
+          value={formData.website}
+          onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+          tabIndex={-1}
+          autoComplete="off"
+          className="absolute -left-[9999px] w-0 h-0 opacity-0"
+          aria-hidden="true"
+        />
+        
         <div>
           <label className={`block font-medium text-neutral-700 dark:text-neutral-300 mb-1.5 ${
             isMobile ? 'text-sm' : 'text-sm'

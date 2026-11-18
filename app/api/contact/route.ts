@@ -59,7 +59,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, subject, message } = await request.json();
+    const { name, email, subject, message, website } = await request.json();
+
+    // HONEYPOT CHECK: If website field is filled, it's a bot!
+    if (website && website.trim() !== '') {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🍯 Honeypot caught a bot! IP:', ip, 'Website field:', website);
+      }
+      // Return success to fool the bot, but don't send email
+      return NextResponse.json(
+        { message: 'Email sent successfully' },
+        { status: 200 }
+      );
+    }
 
     // Validate all fields are present
     if (!name || !email || !subject || !message) {
