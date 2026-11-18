@@ -87,7 +87,9 @@ export async function POST(request: NextRequest) {
 
     // Check for env variables
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('Email credentials not configured');
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Email credentials not configured');
+      }
       return NextResponse.json(
         { error: 'Email service not configured' },
         { status: 500 }
@@ -133,7 +135,9 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     // Don't expose internal error details
-    console.error('Email error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Email error:', error);
+    }
     return NextResponse.json(
       { error: 'Failed to send email. Please try again later.' },
       { status: 500 }
