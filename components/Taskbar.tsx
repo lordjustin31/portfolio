@@ -62,19 +62,19 @@ export default function Taskbar({
         </div>
       </button>
 
-      {/* Search - Hidden on mobile */}
-      {!isMobile && (
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpenSearch();
-          }}
-          className="h-9 px-3 flex items-center gap-2 hover:bg-neutral-700 dark:hover:bg-neutral-800 rounded transition-colors flex-shrink-0"
-        >
-          <Search size={16} className="text-neutral-400 dark:text-neutral-500" />
-          <span className="text-sm text-neutral-400 dark:text-neutral-500">Search</span>
-        </button>
-      )}
+      {/* Search Button */}
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenSearch();
+        }}
+        className={`flex items-center gap-2 rounded transition-colors flex-shrink-0 hover:bg-neutral-700 dark:hover:bg-neutral-800 ${
+          isMobile ? 'h-11 w-11 justify-center' : 'h-9 px-3'
+        }`}
+      >
+        <Search size={isMobile ? 20 : 16} className="text-neutral-400 dark:text-neutral-500" />
+        {!isMobile && <span className="text-sm text-neutral-400 dark:text-neutral-500">Search</span>}
+      </button>
 
       {/* Divider - Hidden on mobile */}
       {!isMobile && <div className="w-px h-6 bg-neutral-700 dark:bg-neutral-800 mx-1 flex-shrink-0" />}

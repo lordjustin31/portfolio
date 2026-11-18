@@ -190,9 +190,94 @@ export default function DesktopCenterContent({ onOpenWindow }: DesktopCenterCont
 
   const currentProject = projects[currentProjectIndex];
 
-  // Don't render center content on mobile (would interfere with icons)
+  // Render center content differently on mobile
   if (isMobile) {
-    return null;
+    return (
+      <div className="px-4 pt-[280px] pb-20 space-y-6">
+        {/* Mobile: Featured Projects Section */}
+        <div className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-700 dark:to-neutral-800 border-b border-neutral-200 dark:border-neutral-600 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Code size={18} className="text-neutral-700 dark:text-neutral-300" />
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">Featured Projects</h2>
+            </div>
+          </div>
+          <div className="p-4 space-y-4">
+            {projects.map((project) => (
+              <div key={project.id} className={`bg-gradient-to-r ${project.gradient} rounded-lg p-4 text-white`}>
+                <h3 className="text-lg font-bold mb-1">{project.name}</h3>
+                <p className="text-xs opacity-90 mb-2">{project.subtitle}</p>
+                <p className="text-xs opacity-80 mb-3">{project.role}</p>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-white/20 rounded-full text-xs">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile: Professional Timeline */}
+        <div className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-700 dark:to-neutral-800 border-b border-neutral-200 dark:border-neutral-600 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Calendar size={18} className="text-neutral-700 dark:text-neutral-300" />
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">Professional Timeline</h2>
+            </div>
+          </div>
+          <div className="p-4">
+            <div className="space-y-4">
+              {timeline.map((item) => (
+                <div key={item.id} className="flex gap-3">
+                  <div className="flex flex-col items-center">
+                    <div className={`w-8 h-8 rounded-full bg-${item.color}-500 text-white flex items-center justify-center flex-shrink-0`}>
+                      <item.icon size={16} />
+                    </div>
+                    {item.id !== timeline[timeline.length - 1].id && (
+                      <div className="w-0.5 h-full bg-neutral-200 dark:bg-neutral-600 mt-2"></div>
+                    )}
+                  </div>
+                  <div className="flex-1 pb-4">
+                    <h3 className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">{item.title}</h3>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400">{item.organization}</p>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-400">{item.period}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: Certificates */}
+        <div className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm border border-neutral-300 dark:border-neutral-700 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-neutral-100 to-neutral-50 dark:from-neutral-700 dark:to-neutral-800 border-b border-neutral-200 dark:border-neutral-600 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Award size={18} className="text-neutral-700 dark:text-neutral-300" />
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">Certificates</h2>
+            </div>
+          </div>
+          <div className="p-4">
+            <div className="grid grid-cols-1 gap-3">
+              {certificates.map((cert) => (
+                <div key={cert.id} className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+                  <div className={`bg-gradient-to-br ${cert.color} p-3 h-20 flex items-center justify-center`}>
+                    <Award size={28} className="text-white opacity-90" />
+                  </div>
+                  <div className="p-3">
+                    <h3 className="text-xs font-semibold text-neutral-800 dark:text-neutral-100 mb-1 line-clamp-2">{cert.name}</h3>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">{cert.issuer}</p>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-500">{cert.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
